@@ -1,0 +1,323 @@
+/* === Reset & Base === */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-dark: #0a0a1a;
+    --bg-card: #12122a;
+    --accent: #00e5ff;
+    --accent-glow: rgba(0, 229, 255, 0.3);
+    --accent-warm: #ff6b35;
+    --text: #e8e8f0;
+    --text-muted: #8888aa;
+    --card-border: rgba(255, 255, 255, 0.06);
+    --card-hover-border: rgba(0, 229, 255, 0.4);
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--bg-dark);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+#bg-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* === Header === */
+header {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 60px 20px 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 12px;
+}
+
+.logo-icon {
+    font-size: 48px;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+h1 {
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    font-weight: 800;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+}
+
+.accent {
+    background: linear-gradient(135deg, var(--accent), #7c4dff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.tagline {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    font-style: italic;
+    letter-spacing: 2px;
+}
+
+/* === Main / Games Grid === */
+main {
+    position: relative;
+    z-index: 1;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 20px 60px;
+}
+
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 32px;
+}
+
+/* === Game Card === */
+.game-card {
+    position: relative;
+    background: var(--bg-card);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    display: block;
+}
+
+.game-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--card-hover-border);
+    box-shadow: 0 12px 40px rgba(0, 229, 255, 0.15);
+}
+
+.game-card:hover .card-glow {
+    opacity: 1;
+}
+
+.game-card:hover .play-btn {
+    background: var(--accent);
+    color: var(--bg-dark);
+    box-shadow: 0 0 20px var(--accent-glow);
+}
+
+.card-glow {
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, var(--accent-glow), transparent 50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Card Image */
+.card-image {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+    background: #0d0d20;
+}
+
+.card-image canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.card-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #22c55e;
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    z-index: 2;
+    box-shadow: 0 2px 8px rgba(34, 197, 94, 0.4);
+}
+
+.badge-soon {
+    background: var(--accent-warm);
+    box-shadow: 0 2px 8px rgba(255, 107, 53, 0.4);
+}
+
+/* Placeholder art for coming soon */
+.placeholder-art {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #1a1a3e, #0d0d20);
+}
+
+.mystery-icon {
+    font-size: 80px;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.08);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.1); opacity: 0.8; }
+}
+
+/* Card Content */
+.card-content {
+    position: relative;
+    z-index: 1;
+    padding: 20px 24px 24px;
+}
+
+.card-content h2 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.game-desc {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 16px;
+}
+
+.game-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.tag {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+    background: rgba(0, 229, 255, 0.1);
+    color: var(--accent);
+    border: 1px solid rgba(0, 229, 255, 0.2);
+}
+
+.tag-muted {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-muted);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.play-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 24px;
+    border-radius: 8px;
+    background: rgba(0, 229, 255, 0.12);
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+/* Coming soon card */
+.coming-soon {
+    cursor: default;
+    opacity: 0.7;
+}
+
+.coming-soon:hover {
+    transform: translateY(-3px);
+    border-color: rgba(255, 107, 53, 0.3);
+    box-shadow: 0 8px 30px rgba(255, 107, 53, 0.1);
+}
+
+/* === Footer === */
+footer {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 40px 20px 50px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.footer-sub {
+    font-size: 0.75rem;
+    margin-top: 6px;
+    opacity: 0.5;
+}
+
+/* === Responsive === */
+@media (max-width: 700px) {
+    header { padding: 40px 16px 16px; }
+    .logo-icon { font-size: 36px; }
+    .games-grid { grid-template-columns: 1fr; gap: 24px; }
+    main { padding: 24px 16px 40px; }
+}
+
+/* === Entrance Animations === */
+.game-card {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: cardIn 0.6s ease forwards;
+}
+
+.game-card:nth-child(1) { animation-delay: 0.2s; }
+.game-card:nth-child(2) { animation-delay: 0.4s; }
+.game-card:nth-child(3) { animation-delay: 0.6s; }
+.game-card:nth-child(4) { animation-delay: 0.8s; }
+
+@keyframes cardIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.coming-soon {
+    animation-name: cardIn;
+}
+
+header {
+    opacity: 0;
+    animation: fadeDown 0.8s ease forwards;
+}
+
+@keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}

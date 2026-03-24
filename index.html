@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lindbom Arcade</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <canvas id="bg-canvas"></canvas>
+
+    <header>
+        <div class="logo">
+            <span class="logo-icon">🕹️</span>
+            <h1>Lindbom <span class="accent">Arcade</span></h1>
+        </div>
+        <p class="tagline">Far & son bygger spel</p>
+    </header>
+
+    <main>
+        <section class="games-grid">
+
+            <a href="https://dlindbom.github.io/mountain-explorer/" class="game-card" data-status="live">
+                <div class="card-glow"></div>
+                <div class="card-image mountain-explorer-art">
+                    <canvas id="mountain-preview" width="400" height="220"></canvas>
+                    <div class="card-badge">LIVE</div>
+                </div>
+                <div class="card-content">
+                    <h2>Mountain Explorer</h2>
+                    <p class="game-desc">Klättra verkliga berg från Kebnekaise till Everest. Undvik björnar, yetis och laviner!</p>
+                    <div class="game-meta">
+                        <span class="tag">Plattform</span>
+                        <span class="tag">Äventyr</span>
+                        <span class="tag">11 berg</span>
+                    </div>
+                    <div class="play-btn">
+                        <span>SPELA NU</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                    </div>
+                </div>
+            </a>
+
+            <div class="game-card coming-soon" data-status="soon">
+                <div class="card-glow"></div>
+                <div class="card-image placeholder-art">
+                    <div class="mystery-icon">?</div>
+                    <div class="card-badge badge-soon">KOMMER SNART</div>
+                </div>
+                <div class="card-content">
+                    <h2>Nästa spel</h2>
+                    <p class="game-desc">Något nytt är på gång... Håll utkik!</p>
+                    <div class="game-meta">
+                        <span class="tag tag-muted">???</span>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <footer>
+        <p>Byggt med ❤️ av Daniel & Alfred</p>
+        <p class="footer-sub">HTML5 Canvas · Vanilla JS · Inga ramverk</p>
+    </footer>
+
+    <script src="js/background.js"></script>
+    <script src="js/preview.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
